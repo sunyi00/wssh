@@ -1,4 +1,5 @@
 import os
+import codecs
 import sys
 import signal
 import errno
@@ -12,6 +13,11 @@ import fcntl
 import struct
 
 import platform
+
+UTF8Reader = codecs.getreader('utf8')
+sys.stdin = UTF8Reader(sys.stdin)
+UTF8Writer = codecs.getwriter('utf8')
+sys.stdout = UTF8Writer(sys.stdout)
 
 try:
     import simplejson as json
